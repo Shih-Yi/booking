@@ -14,6 +14,8 @@ import $ from 'jquery'
 window.jQuery = $;
 window.$ = $;
 
+require('admin-lte');
+
 // scss
 import "../stylesheets/application"
 

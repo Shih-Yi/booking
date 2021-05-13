@@ -11,7 +11,11 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="sidebar-mini layout-fixed layout-navbar-fixed" cz-shortcut-listen="true" style="height: auto;">
+    <div class="wrapper">
+      <%= render partial: 'shared/navbar' %>
+      <%= render partial: 'shared/sidebar' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
