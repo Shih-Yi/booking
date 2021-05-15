@@ -14,49 +14,59 @@
       <p class="section-lead">Please fill out the form below.</p>
 
       <div class="row">
-
-        <%= form_for @reservation , html: { class: "col-12 col-md-6 col-lg-6" } do |f| %>
-            <div class="card">
-              <div class="card-header">
-                <h4>Table Booking</h4>
-              </div>
-              <div class="card-body">
-                <%= f.fields_for :user, @user do |ff| %>
-                  <div class="form-group">
-                    <%= label_tag("Name") %>
-                    <%= ff.text_field :name, class: "form-control", placeholder: "name" %>
-                  </div>
-                  <div class="form-group">
-                    <%= label_tag("Email") %>
-                    <%= ff.text_field :email, class: "form-control", placeholder: "email", required: "" %>
-                    <div class="invalid-feedback">
-                      Oh no! Email is invalid.
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <%= label_tag("Phone Number") %>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <i class="fa fa-phone"></i>
-                        </div>
-                      </div>
-                      <%= ff.text_field :mobile, class: "form-control phone-number", placeholder: "phone" %>
-                    </div>
-                  </div>
-                <% end %>
-
-                <%= label_tag("Name") %>
-                <%= f.text_field :order_number, class: "form-control", placeholder: "order name" %>
+      <%= form_for @reservation , html: { class: "col-12 col-md-6 col-lg-6" } do |f| %>
+          <form role="form">
+            <div class="card-body">
+              <%= f.fields_for :user, @user do |ff| %>
                 <div class="form-group">
-                  <label>Date</label>
-                  <%= f.text_field :booking_at, class: "form-control", placeholder: "booking_at" %>
+                  <%= label_tag("Name") %>
+                  <%= ff.text_field :name, class: "form-control", placeholder: "name" %>
                 </div>
-                <%= f.submit "submit", class: "btn btn-primary" %>
+                <div class="form-group">
+                  <%= label_tag("Contact") %>
+                  <%= ff.text_field :mobile, class: "form-control", placeholder: "mobile" %>
+                </div>
+              <% end %>
+              <div class="form-group">
+                <%= label_tag("Number of Customer") %>
+                <%= f.text_field :number_of_customer, class: "form-control", placeholder: "number of Customer" %>
+              </div>
+              <div class="form-group">
+                <%= label_tag("Table Number") %>
+                <%= f.text_field :table_number, class: "form-control", placeholder: "table Number" %>
+              </div>
+              <div class="form-group">
+                <%= label_tag("remark") %>
+                <%= f.text_field :remark, class: "form-control", placeholder: "remark" %>
+              </div>
+              <div class="form-group">
+                <%= label_tag("Booking at") %>
+                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                  <%= f.text_field :booking_at, class: "form-control datetimepicker-input d-none" %>
+                </div>
               </div>
             </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <%= f.submit "submit", class: "btn btn-primary" %>
+            </div>
+          </form>
         <% end %>
       </div>
     </div>
   </section>
 </div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker({
+      inline: true,
+      sideBySide: true,
+      icons: {
+        time: "fa fa-clock",
+      },
+      format: 'YYYY-MM-DD HH:mm',
+    });
+  });
+</script>

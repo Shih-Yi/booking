@@ -15,6 +15,8 @@ window.jQuery = $;
 window.$ = $;
 
 require('admin-lte');
+require('moment');
+require("tempusdominus-bootstrap-4")
 
 // scss
 import "../stylesheets/application"
