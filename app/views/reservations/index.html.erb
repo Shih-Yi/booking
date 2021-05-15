@@ -105,7 +105,11 @@ $(document).on('click', ".res-destroy",
       })
       .done(function (ret) {
         $('#the_datatable').DataTable().ajax.reload();
-        console.log(ret)
+        $(document).Toasts('create', {
+          class: 'bg-success',
+          title: 'Success',
+          body: ret.result
+        })
       })
     }
   }

@@ -1,0 +1,12 @@
+<% unless flash.empty? %>
+  <script type="text/javascript">
+    <% flash.each do |key, value| %>
+    <% type = key.to_s.gsub('alert','error').gsub('notice','success') %>
+    $(document).Toasts('create', {
+      class: 'bg-<%= type %>',
+      title: '<%= type %>',
+      body: '<%= value %>',
+    })
+    <% end %>
+  </script>
+<% end %>

@@ -13,8 +13,9 @@
 
   <body class="sidebar-mini layout-fixed layout-navbar-fixed" cz-shortcut-listen="true" style="height: auto;">
     <div class="wrapper">
-      <%= render partial: 'shared/navbar' %>
-      <%= render partial: 'shared/sidebar' %>
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/sidebar' %>
+      <%= render 'shared/message' %>
       <%= yield %>
     </div>
   </body>

@@ -17,6 +17,7 @@ class ReservationsController < ApplicationController
   def create
     reservation = Reservation.new(reservation_params)
     reservation.save!
+    flash[:success] = "Successfully"
     redirect_to reservations_path
   end
 
@@ -25,12 +26,13 @@ class ReservationsController < ApplicationController
 
   def update
     @reservation.update(reservation_params)
+    flash[:success] = "Successfully"
     redirect_to reservations_path
   end
 
   def destroy
     @reservation.destroy
-    render status: 200, json: { result: "deleted successfully" }
+    render status: 200, json: { result: "Deleted Successfully" }
   end
 
   private
