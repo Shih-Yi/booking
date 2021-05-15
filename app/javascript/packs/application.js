@@ -16,6 +16,7 @@ window.$ = $;
 
 require('admin-lte');
 require('moment');
+window.moment = moment
 require("tempusdominus-bootstrap-4");
 require("datatables.net-buttons-bs4");
 require('datatables.net-responsive-bs4');
