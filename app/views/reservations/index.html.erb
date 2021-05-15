@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Reservations</h1>
           </div>
           <div class="col-sm-4">
           </div>
@@ -21,12 +21,21 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+              <h3 class="card-title">Reservations List</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example" class="table display responsive no-wrap table-bordered table-striped">
-            
+              <table class="table table-striped table-bordered" id="example1" width="100%">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Number of customer</th>
+                    <th>Table number</th>
+                    <th>Booking at</th>
+                    <th>Remark</th>
+                  </tr>
+                </thead>
               </table>
             </div>
             <!-- /.card-body -->
@@ -44,8 +53,41 @@
   </div>
 
 <script>
- $(function () {
-    $("#example").DataTable();
+  $(function () {
+    $("#example1").DataTable({
+      responsive: {
+        breakpoints: [
+        { name: 'desktop', width: Infinity },
+        { name: 'tablet',  width: 1480 },
+        { name: 'fablet',  width: 1024 },
+        { name: 'phone',   width: 768 }
+        ]
+      },
+      "ajax":  {
+        "url": "/reservations",
+        "type": "GET",
+        "contentType": 'application/json',
+        "dataSrc": '',
+        "complete": function(xhr, responseText){
+          console.log(xhr.responseJSON);
+          console.log(responseText); //*** responseJSON: Array[0]
+        }
+      },
+      "columns": [
+        { "data": "user.name" },
+        { "data": "user.mobile"},
+        { "data": "number_of_customer"},
+        { "data": "table_number"},
+        { "data": "booking_at"},
+        { "data": "remark"},
+      ],
+      "columnDefs": [
+        {
+            targets: [1],
+            className: 'text-center'
+        }
+      ],
     });
+  });
 </script>
 

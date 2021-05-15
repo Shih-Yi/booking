@@ -16,7 +16,9 @@ window.$ = $;
 
 require('admin-lte');
 require('moment');
-require("tempusdominus-bootstrap-4")
+require("tempusdominus-bootstrap-4");
+require('datatables.net-responsive-bs4');
+require('datatables.net-bs4');
 
 // scss
 import "../stylesheets/application"

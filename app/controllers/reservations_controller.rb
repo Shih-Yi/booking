@@ -1,5 +1,10 @@
 class ReservationsController < ApplicationController
   def index
+    @reservations = Reservation.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @reservations.includes(:user).to_json({include: { user: { only: [:name, :mobile]}}}) }
+    end
   end
   def new
     @reservation = Reservation.new
