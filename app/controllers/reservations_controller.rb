@@ -7,7 +7,9 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    byebug
+    reservation = Reservation.new(reservation_params)
+    reservation.save!
+    redirect_to reservations_path
   end
 
   def edit
@@ -17,6 +19,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:order_number, :booking_at, user_attributes: [:name, :email, :mobile])
+    params.require(:reservation).permit(:number_of_customer, :table_number, :remark, :booking_at, user_attributes: [:name, :email, :mobile])
   end
 end

@@ -16,11 +16,12 @@ ActiveRecord::Schema.define(version: 2021_05_13_084028) do
   enable_extension "plpgsql"
 
   create_table "reservations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "order_number", null: false
+    t.bigint "user_id"
+    t.integer "number_of_customer"
     t.integer "status", default: 0, null: false
-    t.datetime "booking_at", null: false
-    t.text "note"
+    t.text "remark"
+    t.datetime "booking_at"
+    t.integer "table_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_reservations_on_user_id"
@@ -28,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_084028) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email", default: "", null: false
+    t.string "email"
     t.string "mobile"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
