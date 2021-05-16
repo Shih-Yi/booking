@@ -15,9 +15,9 @@
             <% @reservations[i+1].each do |reservation| %>
               <div class="card">
                 <% if reservation.status == 'booked' %>
-                  <% class_name = 'bg-info' %>
+                  <% class_name = 'bg-gradient-info' %>
                 <% elsif reservation.status == 'seated' %>
-                  <% class_name = 'bg-success' %>
+                  <% class_name = 'bg-gradient-success' %>
                 <% else %>
                   <% class_name = 'bg-gradient-danger' %>
                 <% end %>
@@ -88,14 +88,14 @@ $(document).on('click', ".status-event",
       switch (status) {
         case 'booked':
           self.removeClass("bg-gradient-danger");
-          self.addClass("bg-info");
+          self.addClass("bg-gradient-info");
           break;
         case 'seated':
-          self.removeClass("bg-info");
-          self.addClass("bg-success");
+          self.removeClass("bg-gradient-info");
+          self.addClass("bg-gradient-success");
           break;
         case 'cancelled':
-          self.removeClass("bg-success");
+          self.removeClass("bg-gradient-success");
           self.addClass("bg-gradient-danger");
           break;
       }
