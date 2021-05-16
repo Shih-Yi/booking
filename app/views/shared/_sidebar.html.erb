@@ -42,3 +42,18 @@
     </nav>
   </div>
 </aside>
+
+<script>
+  $(function($) {
+    let url = window.location.href;
+    $('.nav li a').each(function() {
+      if (this.href === url) {
+        $(this).closest('a').addClass('active');
+      }
+    });
+  });
+  $('.nav li a').click(function(){
+    $('.nav li a').removeClass('active');
+    $(this).addClass('active');
+  })
+</script>
