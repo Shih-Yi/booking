@@ -21,6 +21,8 @@ require("tempusdominus-bootstrap-4");
 require("datatables.net-buttons-bs4");
 require('datatables.net-responsive-bs4');
 require('datatables.net-bs4');
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+window.Swal = Swal
 
 // scss
 import "../stylesheets/application"
