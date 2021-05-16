@@ -99,9 +99,11 @@ $(document).on('click', ".res-destroy",
       .done(function (ret) {
         $('#the_datatable').DataTable().ajax.reload();
         $(document).Toasts('create', {
-          class: 'bg-success',
+          delay: 5000,
+          autohide: true,
+          class: 'bg-danger',
           title: 'Success',
-          body: ret.result
+          body: ret.result,
         })
       })
     }
