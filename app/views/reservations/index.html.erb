@@ -81,9 +81,15 @@
       ],
       "columnDefs": [
         {
-            targets: [1],
-            className: 'text-center'
+          targets: [1],
+          className: 'text-center'
         }
+      ],
+      "columnDefs": [{
+        targets:4,
+        render: function(data){
+        return moment(data).format('DD/MM/YYYY HH:mm');
+        }}
       ],
     });
   });
