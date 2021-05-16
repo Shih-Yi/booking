@@ -1,7 +1,13 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   accepts_nested_attributes_for :user
-  before_validation :create_if_not_exist
+  before_validation :create_if_not_exist, on: :create
+
+  enum status: {
+    booked:     0,
+    seated:     1,
+    cancelled:  2,
+  }
 
   def create_if_not_exist
     # Find or create the user by name and mobile

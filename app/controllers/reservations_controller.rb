@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:edit, :update, :destroy]
+  before_action :set_reservation, only: [:edit, :update, :destroy, :update_status]
 
   def index
     @reservations = Reservation.all
@@ -33,6 +33,18 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     render status: 200, json: { result: "Deleted Successfully" }
+  end
+
+  def update_status
+    case @reservation.status
+    when 'booked'
+      @reservation.seated!
+    when 'seated'
+      @reservation.cancelled!
+    when 'cancelled'
+      @reservation.booked!
+    end
+    render status: 200, json: { result: "update Successfully", status: @reservation.status }
   end
 
   private

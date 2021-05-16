@@ -1,6 +1,7 @@
-<% 21.times.each do |i| %>
-  <div class="col-md-4">
-    <div class="card card-outline card-primary">
+<section class="col-lg-3">
+            <!-- Custom tabs (Charts with tabs)-->
+  <% 7.times.each do |i| %>
+    <div class="card card-outline">
       <div class="card-header">
         <h3 class="card-title">No. <%= i + 1 %></h3>
         <div class="card-tools">
@@ -11,38 +12,48 @@
       <div class="card-body" style="display: block;">
         <div id="accordion">
           <% if @reservations[i+1] %>
-            <% @reservations[i+1].each do |reservations| %>
+            <% @reservations[i+1].each do |reservation| %>
               <div class="card">
-                <div class="card-header">
+                <% if reservation.status == 'booked' %>
+                  <% class_name = 'bg-info' %>
+                <% elsif reservation.status == 'seated' %>
+                  <% class_name = 'bg-success' %>
+                <% else %>
+                  <% class_name = 'bg-gradient-danger' %>
+                <% end %>
+                <div class="card-header status-event small-box <%= class_name %>" data-id="<%= reservation.id %>">
                   <h4 class="card-title">
+                    <div class="">
+                      <h3> <%= reservation.booking_at.strftime("%H:%M") %> </h3>
+                    </div>
                     <span class="">
-                      <%= reservations.user.name %>
+                      <%= reservation.user.name %>
                     </span>
-                    <span class="bg-primary">
-                      <%=  reservations.booking_at.strftime("%H:%M")  %>
-                    </span>
+                    <div class="icon">
+                      <i class="fas fa-cog"></i>
+                    </div>
                   </h4>
                 </div>
                 <div class="card-footer p-0">
                 <ul class="nav flex-column">
-                  <% if reservations.number_of_customer.present? %>
+                  <% if reservation.number_of_customer.present? %>
                     <li class="nav-item">
                       <span class="nav-link">
-                        Number of customer: <%= reservations.number_of_customer %>
+                        Number of customer: <%= reservation.number_of_customer %>
                       </span>
                     </li>
                   <% end %>
-                  <% if reservations.user.mobile.present? %>
+                  <% if reservation.user.mobile.present? %>
                     <li class="nav-item">
                       <span class="nav-link">
-                        Contact: <%= reservations.user.mobile %>
+                        Contact: <%= reservation.user.mobile %>
                       </span>
                     </li>
                   <% end %>
-                  <% if reservations.remark.present? %>
+                  <% if reservation.remark.present? %>
                     <li class="nav-item">
                       <span class="nav-link">
-                        Remark: <%= reservations.remark %>
+                        Remark: <%= reservation.remark %>
                       </span>
                     </li>
                   <% end %>
@@ -57,5 +68,38 @@
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
-  </div>
-<% end %>
+  <% end %>
+</section>
+
+<script>
+$(document).on('click', ".status-event",
+  function(){
+    let self = $(this)
+    let id = $(this).data("id")
+    $.ajax({
+      url: "/reservations/" + id + "/update_status",
+      type: 'POST',
+      data: JSON.stringify({ id: id }),
+      contentType: 'application/json',
+    })
+    .done(function (ret) {
+      console.log(ret)
+      const status = ret.status;
+      switch (status) {
+        case 'booked':
+          self.removeClass("bg-gradient-danger");
+          self.addClass("bg-info");
+          break;
+        case 'seated':
+          self.removeClass("bg-info");
+          self.addClass("bg-success");
+          break;
+        case 'cancelled':
+          self.removeClass("bg-success");
+          self.addClass("bg-gradient-danger");
+          break;
+      }
+    })
+  }
+)
+</script>
