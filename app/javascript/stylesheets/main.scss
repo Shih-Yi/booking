@@ -8,19 +8,20 @@
   margin: 0 30px;
 }
 
+// reservations
 .fa-times-circle {
   color: #ff6b6d;
 }
 
+// booking table
 .card .small-box {
   margin-bottom: 0px;
 }
 
-.set_margin_problem {
-  display: flex;
-  justify-content: center;
-}
-
 .second-column {
   margin-top: 20px;
+}
+
+.card-header .text{
+  font-size: 1.3rem;
 }
