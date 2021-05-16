@@ -1,9 +1,9 @@
 <section class="col-lg-3">
             <!-- Custom tabs (Charts with tabs)-->
-  <% 7.times.each do |i| %>
+  <% (1..9).reverse_each.each do |i| %>
     <div class="card card-outline">
       <div class="card-header">
-        <h3 class="card-title">No. <%= i + 1 %></h3>
+        <h3 class="card-title">No. <%= i %></h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
           </button>
@@ -11,8 +11,364 @@
       </div>
       <div class="card-body" style="display: block;">
         <div id="accordion">
-          <% if @reservations[i+1] %>
-            <% @reservations[i+1].each do |reservation| %>
+          <% if @reservations[i] %>
+            <% @reservations[i].each do |reservation| %>
+              <div class="card">
+                <% if reservation.status == 'booked' %>
+                  <% class_name = 'bg-gradient-info' %>
+                <% elsif reservation.status == 'seated' %>
+                  <% class_name = 'bg-gradient-success' %>
+                <% else %>
+                  <% class_name = 'bg-gradient-danger' %>
+                <% end %>
+                <div class="card-header status-event small-box <%= class_name %>" data-id="<%= reservation.id %>">
+                  <h4 class="card-title">
+                    <div class="">
+                      <h3> <%= reservation.booking_at.strftime("%H:%M") %> </h3>
+                    </div>
+                    <span class="">
+                      <%= reservation.user.name %>
+                    </span>
+                    <div class="icon">
+                      <i class="fas fa-cog"></i>
+                    </div>
+                  </h4>
+                </div>
+                <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                  <% if reservation.number_of_customer.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Number of customer: <%= reservation.number_of_customer %>
+                      </span>
+                    </li>
+                  <% end %>
+                  <% if reservation.user.mobile.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Contact: <%= reservation.user.mobile %>
+                      </span>
+                    </li>
+                  <% end %>
+                  <% if reservation.remark.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Remark: <%= reservation.remark %>
+                      </span>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+              </div>
+            <% end %>
+          <% else %>
+          <% end %>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  <% end %>
+</section>
+
+<section class="col-lg-3 second-column">
+            <!-- Custom tabs (Charts with tabs)-->
+  <!-- ---- No. 10~15 ---- -->
+  <% (10..15).reverse_each.each do |i| %>
+    <div class="card card-outline">
+      <div class="card-header">
+        <h3 class="card-title">No. <%= i %></h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body" style="display: block;">
+        <div id="accordion">
+          <% if @reservations[i] %>
+            <% @reservations[i].each do |reservation| %>
+              <div class="card">
+                <% if reservation.status == 'booked' %>
+                  <% class_name = 'bg-gradient-info' %>
+                <% elsif reservation.status == 'seated' %>
+                  <% class_name = 'bg-gradient-success' %>
+                <% else %>
+                  <% class_name = 'bg-gradient-danger' %>
+                <% end %>
+                <div class="card-header status-event small-box <%= class_name %>" data-id="<%= reservation.id %>">
+                  <h4 class="card-title">
+                    <div class="">
+                      <h3> <%= reservation.booking_at.strftime("%H:%M") %> </h3>
+                    </div>
+                    <span class="">
+                      <%= reservation.user.name %>
+                    </span>
+                    <div class="icon">
+                      <i class="fas fa-cog"></i>
+                    </div>
+                  </h4>
+                </div>
+                <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                  <% if reservation.number_of_customer.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Number of customer: <%= reservation.number_of_customer %>
+                      </span>
+                    </li>
+                  <% end %>
+                  <% if reservation.user.mobile.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Contact: <%= reservation.user.mobile %>
+                      </span>
+                    </li>
+                  <% end %>
+                  <% if reservation.remark.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Remark: <%= reservation.remark %>
+                      </span>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+              </div>
+            <% end %>
+          <% else %>
+          <% end %>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  <% end %>
+</section>
+
+<section class="col-lg-3 second-column">
+  <!-- ---- No. 27 ---- -->
+  <div class="card card-outline">
+    <div class="card-header">
+      <h3 class="card-title">No. <%= 27 %></h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body" style="display: block;">
+      <div id="accordion">
+        <% if @reservations[27] %>
+          <% @reservations[27].each do |reservation| %>
+            <div class="card">
+              <% if reservation.status == 'booked' %>
+                <% class_name = 'bg-gradient-info' %>
+              <% elsif reservation.status == 'seated' %>
+                <% class_name = 'bg-gradient-success' %>
+              <% else %>
+                <% class_name = 'bg-gradient-danger' %>
+              <% end %>
+              <div class="card-header status-event small-box <%= class_name %>" data-id="<%= reservation.id %>">
+                <h4 class="card-title">
+                  <div class="">
+                    <h3> <%= reservation.booking_at.strftime("%H:%M") %> </h3>
+                  </div>
+                  <span class="">
+                    <%= reservation.user.name %>
+                  </span>
+                  <div class="icon">
+                    <i class="fas fa-cog"></i>
+                  </div>
+                </h4>
+              </div>
+              <div class="card-footer p-0">
+              <ul class="nav flex-column">
+                <% if reservation.number_of_customer.present? %>
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      Number of customer: <%= reservation.number_of_customer %>
+                    </span>
+                  </li>
+                <% end %>
+                <% if reservation.user.mobile.present? %>
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      Contact: <%= reservation.user.mobile %>
+                    </span>
+                  </li>
+                <% end %>
+                <% if reservation.remark.present? %>
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      Remark: <%= reservation.remark %>
+                    </span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            </div>
+          <% end %>
+        <% else %>
+        <% end %>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+    <!-- /.card -->
+  <!-- ---- No. 16~20 ---- -->
+  <% (16..20).reverse_each.each do |i| %>
+    <div class="card card-outline">
+      <div class="card-header">
+        <h3 class="card-title">No. <%= i %></h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body" style="display: block;">
+        <div id="accordion">
+          <% if @reservations[i] %>
+            <% @reservations[i].each do |reservation| %>
+              <div class="card">
+                <% if reservation.status == 'booked' %>
+                  <% class_name = 'bg-gradient-info' %>
+                <% elsif reservation.status == 'seated' %>
+                  <% class_name = 'bg-gradient-success' %>
+                <% else %>
+                  <% class_name = 'bg-gradient-danger' %>
+                <% end %>
+                <div class="card-header status-event small-box <%= class_name %>" data-id="<%= reservation.id %>">
+                  <h4 class="card-title">
+                    <div class="">
+                      <h3> <%= reservation.booking_at.strftime("%H:%M") %> </h3>
+                    </div>
+                    <span class="">
+                      <%= reservation.user.name %>
+                    </span>
+                    <div class="icon">
+                      <i class="fas fa-cog"></i>
+                    </div>
+                  </h4>
+                </div>
+                <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                  <% if reservation.number_of_customer.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Number of customer: <%= reservation.number_of_customer %>
+                      </span>
+                    </li>
+                  <% end %>
+                  <% if reservation.user.mobile.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Contact: <%= reservation.user.mobile %>
+                      </span>
+                    </li>
+                  <% end %>
+                  <% if reservation.remark.present? %>
+                    <li class="nav-item">
+                      <span class="nav-link">
+                        Remark: <%= reservation.remark %>
+                      </span>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+              </div>
+            <% end %>
+          <% else %>
+          <% end %>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  <% end %>
+</section>
+
+<section class="col-lg-3">
+  <!-- ---- No. 26 ---- -->
+  <div class="card card-outline">
+    <div class="card-header">
+      <h3 class="card-title">No. <%= 26 %></h3>
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body" style="display: block;">
+      <div id="accordion">
+        <% if @reservations[26] %>
+          <% @reservations[26].each do |reservation| %>
+            <div class="card">
+              <% if reservation.status == 'booked' %>
+                <% class_name = 'bg-gradient-info' %>
+              <% elsif reservation.status == 'seated' %>
+                <% class_name = 'bg-gradient-success' %>
+              <% else %>
+                <% class_name = 'bg-gradient-danger' %>
+              <% end %>
+              <div class="card-header status-event small-box <%= class_name %>" data-id="<%= reservation.id %>">
+                <h4 class="card-title">
+                  <div class="">
+                    <h3> <%= reservation.booking_at.strftime("%H:%M") %> </h3>
+                  </div>
+                  <span class="">
+                    <%= reservation.user.name %>
+                  </span>
+                  <div class="icon">
+                    <i class="fas fa-cog"></i>
+                  </div>
+                </h4>
+              </div>
+              <div class="card-footer p-0">
+              <ul class="nav flex-column">
+                <% if reservation.number_of_customer.present? %>
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      Number of customer: <%= reservation.number_of_customer %>
+                    </span>
+                  </li>
+                <% end %>
+                <% if reservation.user.mobile.present? %>
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      Contact: <%= reservation.user.mobile %>
+                    </span>
+                  </li>
+                <% end %>
+                <% if reservation.remark.present? %>
+                  <li class="nav-item">
+                    <span class="nav-link">
+                      Remark: <%= reservation.remark %>
+                    </span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            </div>
+          <% end %>
+        <% else %>
+        <% end %>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+    <!-- /.card -->
+  <!-- ---- No. 16~20 ---- -->
+  <% (21..25).reverse_each.each do |i| %>
+    <div class="card card-outline">
+      <div class="card-header">
+        <h3 class="card-title">No. <%= i %></h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body" style="display: block;">
+        <div id="accordion">
+          <% if @reservations[i] %>
+            <% @reservations[i].each do |reservation| %>
               <div class="card">
                 <% if reservation.status == 'booked' %>
                   <% class_name = 'bg-gradient-info' %>
