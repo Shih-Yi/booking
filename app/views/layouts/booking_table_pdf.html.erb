@@ -3,8 +3,61 @@
   <head>
     <title>Booking</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= stylesheet_link_tag(asset_data_base64('libs/bootstrap')) %>
+    <%#= stylesheet_link_tag(asset_data_base64('libs/bootstrap')) %>
     <style>
+      html {
+        box-sizing: border-box;
+        -ms-overflow-style: scrollbar;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+      }
+
+      .col, .col-12 {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      .col {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+
+      .col-12{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
       .col-border {
         border: black solid 1px;
         margin: 15px 5px;
