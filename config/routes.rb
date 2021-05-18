@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
+  get 'pdf', to: 'home#pdf'
 end

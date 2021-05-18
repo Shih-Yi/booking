@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <!-- no 1..9 -->
+    <div class="col first">
+      <% (1..9).reverse_each.each do |i| %>
+        <div class="col-12 first-col col-border">
+          No. <%= i %>
+          <div>
+          <% if reservations[i] %>
+            <% reservations[i].each do |reservation| %>
+              <%= reservation.try(:booking_at).try(:strftime, "%H:%M") %>-
+              <%= reservation.try(:user).try(:name) %>-
+              <%= reservation.try(:number_of_customer) %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- no 10..15 -->
+    <div class="col second">
+      <% (10..15).reverse_each.each do |i| %>
+        <div class="col-12 second-col col-border">
+          No. <%= i %>
+          <div>
+          <% if reservations[i] %>
+            <% reservations[i].each do |reservation| %>
+              <%= reservation.try(:booking_at).try(:strftime, "%H:%M") %>-
+              <%= reservation.try(:user).try(:name) %>-
+              <%= reservation.try(:number_of_customer) %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- no 27, 16..20-->
+    <div class="col third">
+      <div class="col-12 second-col col-border">
+          No. 27 (four seater table)
+          <div>
+          <% if reservations[27] %>
+            <% reservations[27].each do |reservation| %>
+              <%= reservation.try(:booking_at).try(:strftime, "%H:%M") %>-
+              <%= reservation.try(:user).try(:name) %>-
+              <%= reservation.try(:number_of_customer) %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      <% (16..20).reverse_each.each do |i| %>
+        <div class="col-12 second-col col-border">
+          No. <%= i %>
+          <% if i == 20 %>
+            (six seater table)
+          <% end %>
+          <div>
+          <% if reservations[i] %>
+            <% reservations[i].each do |reservation| %>
+              <%= reservation.try(:booking_at).try(:strftime, "%H:%M") %>-
+              <%= reservation.try(:user).try(:name) %>-
+              <%= reservation.try(:number_of_customer) %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- no 21..26 -->
+    <div class="col fourth">
+      <% (21..26).reverse_each.each do |i| %>
+        <div class="col-12 second-col col-border">
+          No. <%= i %>
+          <% if i == 23 %>
+            (four seater table)
+          <% end %>
+          <div>
+          <% if reservations[i] %>
+            <% reservations[i].each do |reservation| %>
+              <%= reservation.try(:booking_at).try(:strftime, "%H:%M") %>-
+              <%= reservation.try(:user).try(:name) %>-
+              <%= reservation.try(:number_of_customer) %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

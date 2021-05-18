@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Booking</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= stylesheet_link_tag(asset_data_base64('libs/bootstrap')) %>
+    <style>
+      .col-border {
+        border: black solid 1px;
+        margin: 15px 5px;
+        display:table;
+      }
+
+      .row .first-col {
+          height: 135px;
+        }
+      .row .second, .third {
+        margin: 25px 5px;
+      }
+      .row .second-col {
+          margin: 20px 0px;
+          height: 195px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
