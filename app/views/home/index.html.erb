@@ -2,20 +2,24 @@
 <div class="content-wrapper px-4 py-2">
 
   <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-4">
+          <h1 class="m-0 text-dark">Dashboard</h1>
+        </div>
+        <div class="col-sm-2">
+            <%= link_to 'Download', table_pdf_path(format: :pdf), class: "btn btn-block btn-outline-success download-pdf", target: :_blank %>
+          </div>
+        <!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
 
   <div class="container">
     <div class="row">
@@ -39,23 +43,26 @@
 </div>
 
 <script type="text/javascript">
-  $(function () {
-    let today = moment(new Date(), "DD/MM/YYYY");
-    $('#datetimepicker').datetimepicker({
-      format: 'DD/MM/YYYY',
-      defaultDate: today,
+  $(document).ready(function(){
+    $(function () {
+      let today = moment(new Date(), "DD/MM/YYYY");
+      $('#datetimepicker').datetimepicker({
+        format: 'DD/MM/YYYY',
+        defaultDate: today,
+      });
     });
-  });
-  $('#datetimepicker').on("change.datetimepicker", function(e) {
-    let date = $(".datetimepicker-input").val()
-    console.log(date)
-    $.ajax({
-      url: "/",
-      method: 'GET',
-      dataType: 'script',
-      data: { date: date },
-    })
-    .done(function (ret) {
-    })
-  });
+    $('#datetimepicker').on("change.datetimepicker", function(e) {
+      let date = $(".datetimepicker-input").val()
+      console.log(date)
+      $(".download-pdf").attr("href", "/table_pdf.pdf?date=" + date )
+      $.ajax({
+        url: "/",
+        method: 'GET',
+        dataType: 'script',
+        data: { date: date },
+      })
+      .done(function (ret) {
+      })
+    });
+  })
 </script>

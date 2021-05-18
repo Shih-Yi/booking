@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     end
   end
 
-  def pdf
+  def table_pdf
     date = params[:date] || Time.current.strftime("%d-%m-%Y")
     beginning_of_day = Time.zone.parse(date).beginning_of_day
     end_of_day = Time.zone.parse(date).end_of_day
