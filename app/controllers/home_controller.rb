@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render  pdf: "aaa",
+        render  pdf: "booking-#{beginning_of_day.strftime("%d-%m-%Y")}",
                 page_size: 'A4',
                 encoding: 'utf-8',
                 margin: { top: 5, left: 5, bottom: 5, right: 5 },
