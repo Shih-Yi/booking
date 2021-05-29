@@ -21,10 +21,19 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
 
         <li class="nav-item has-treeview">
-          <a href="/" class="nav-link">
+          <a href="<%= root_path(meal: 'lunch') %>" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Dashboard
+              Seating Chart (Lunch)
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="<%= root_path(meal: 'dinner') %>" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Seating Chart (Dinner)
             </p>
           </a>
         </li>

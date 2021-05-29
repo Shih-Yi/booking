@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-4">
-          <h1 class="m-0 text-dark">Dashboard</h1>
+          <h1 class="m-0 text-dark">Seating Chart <span class="breadcrumb_seating"></span></h1>
         </div>
         <div class="col-sm-2">
             <%= link_to 'Download', table_pdf_path(format: :pdf), class: "btn btn-block btn-outline-success download-pdf", target: :_blank %>
@@ -14,7 +14,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Seating Chart <span class="breadcrumb_seating"></span></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -44,6 +44,8 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+    let meal = window.location.search.substr(1).split("=")[1]
+    $(".breadcrumb_seating").text(capitalize(meal))
     $(function () {
       let today = moment(new Date(), "DD/MM/YYYY");
       $('#datetimepicker').datetimepicker({
@@ -59,12 +61,18 @@
         url: "/",
         method: 'GET',
         dataType: 'script',
-        data: { date: date },
+        data: { date: date, meal: meal },
       })
       .done(function (ret) {
       })
     });
   })
+
+  const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+
   window.setTimeout(function () {
     window.location.reload();
   }, 30000);
