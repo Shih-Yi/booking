@@ -18,7 +18,7 @@ class HomeController < ApplicationController
                 margin: { top: 5, left: 5, bottom: 5, right: 5 },
                 template: "/home/table_pdf.html.erb",
                 layout: "/booking_table_pdf.html.erb",
-                locals: { reservations: @reservations, data: @beginning_of_day }
+                locals: { reservations: @reservations, data: @beginning_of_day, meal: params[:meal] }
       end
     end
   end
