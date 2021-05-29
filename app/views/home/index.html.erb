@@ -56,7 +56,7 @@
     $('#datetimepicker').on("change.datetimepicker", function(e) {
       let date = $(".datetimepicker-input").val()
       console.log(date)
-      $(".download-pdf").attr("href", "/table_pdf.pdf?date=" + date )
+      $(".download-pdf").attr("href", "/table_pdf.pdf?date=" + date + "&meal=" + meal)
       $.ajax({
         url: "/",
         method: 'GET',
@@ -73,6 +73,7 @@
     return s.charAt(0).toUpperCase() + s.slice(1)
   }
 
+  // auto refresh every 30 sec
   window.setTimeout(function () {
     window.location.reload();
   }, 30000);
