@@ -16,6 +16,21 @@
             <%= link_to 'Create Reservation', new_reservation_path, class: "btn btn-block btn-outline-success" %>
           </div>
         </div>
+
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                          <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker" data-toggle="datetimepicker"/>
+                          <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
     </section>
 
@@ -58,12 +73,17 @@
   </div>
 
 <script>
-  $(function () {
-    $("#the_datatable").DataTable({
+  $(document).ready(function(){
+    let table = $("#the_datatable").DataTable({
       responsive: true,
       "ajax":  {
         "url": "/reservations",
         "type": "GET",
+        // "data": {
+        //   "date": function () {
+        //       return $(".datetimepicker-input").val()
+        //     }
+        // },
         "contentType": 'application/json',
         "dataSrc": '',
         "complete": function(xhr, responseText){
@@ -96,6 +116,23 @@
         return moment(data).format('DD/MM/YYYY HH:mm');
         }}
       ],
+    });
+
+    // datetimepicker
+    $(function () {
+      let today = moment(new Date(), "DD/MM/YYYY");
+      console.log(today)
+      $('#datetimepicker').datetimepicker({
+        format: 'DD/MM/YYYY',
+        defaultDate: today,
+      });
+    });
+
+    $('#datetimepicker').on("change.datetimepicker", function(e) {
+      let newDate = e.date;
+      let oldDate = e.oldDate;
+      let date = moment(Date.parse(newDate)).format("DD/MM/YYYY")
+      table.search(date).draw();
     });
   });
 
